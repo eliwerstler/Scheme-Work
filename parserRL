@@ -1,0 +1,16 @@
+(define parse
+  (lambda (input)
+    (if (null? input)
+        0
+    (let ((rest (parse (cdr input))))
+      (if (number? (car input))
+          (+ rest (car input))
+          (let ((b rest))
+            (let ((a (parse (cdr input))))
+              (cond
+                ((eq? (car input) '+)(+ a b))
+                ((eq? (car input) '-)(- a b))
+                ((eq? (car input) '*)(* a b))
+                ((eq? (car input) '/)(/ a b)))
+              (else 1))))))))
+(parse '(5 + 6 + 7))

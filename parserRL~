@@ -1,0 +1,17 @@
+(define parse
+  (lambda (input)
+    (if (null? input)
+        0
+        (let ((first (car input)))
+          (if (number? first)
+              first
+              (let ((second (parse (cadr input)))
+                    (rest (cddr input)))
+                (case first
+                  ((+) (+ second (parse rest)))
+                  ((-) (- second (parse rest)))
+                  ((*) (* second (parse rest)))
+                  ((/) (/ second (parse rest)))
+                  (else (error "Invalid operator: ~a" first)))))))))
+(parse '(5 - (6 - 7)))
+(parse '((5 - 6) - 7))

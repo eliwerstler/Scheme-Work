@@ -1,0 +1,27 @@
+(define (question? n matrix)
+   
+    ;; define helper functions here
+
+      (begin
+         (newline)
+         (display "__________________________________")
+         (newline)
+         (display matrix)
+         (newline)
+         (cond
+             ((sorted? matrix)
+                 (begin
+                   (display "Every Row is in sorted order.")
+                   (newline)
+                   (display "The sum of column ")
+                   (display n)
+                   (display " is ")
+                   (display (sumColumn n matrix))
+                 ) ;; end begin
+             ) ;; end sorted
+             (else (display "The rows are not sorted."))
+         ) ;; end cond
+         (newline)
+      ) ;; end begin
+   
+   ) ;; end question?

@@ -1,0 +1,20 @@
+;; Eli Werstler
+;; Prof. King
+;; CSCI 324
+;; Arithmatic Parser
+;; parse
+
+(define (parse input)
+  (lambda (input)
+    (define (operation op)
+      (cond
+        [(eq? op +) +]
+    (cond
+      [(null? input) 0] ;; Base case: checks to see if the list is empty. Returns 0 if so.
+      [(not (list? input)) input] ;; Checks to see if list is a single number. Returns it if so.
+      [(number? (car input)) (+ (car input) (parse (cdr input)))] ;; Checks to make sure the value at front of list is number. If so, recursively adds it to the total.
+      [(list? (car input)) (+ (parse (car input)) (parse (cdr input)))] ;; If front value is another list, recurively add that list with the rest of the list.
+      [else (parse (cdr input))] ;; If front value is not a number or list, recursively add the rest of the list.
+      )
+    )
+  )
